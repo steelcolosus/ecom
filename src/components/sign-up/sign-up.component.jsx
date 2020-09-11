@@ -40,7 +40,8 @@ const SignUp = () => {
     const handleChange = event => {
         const { value, name } = event.target;
         setSignupData((_signupData) => {
-            return { ..._signupData, [name]: value }
+            _signupData[name] = value
+            return { ..._signupData}
         })
     }
 

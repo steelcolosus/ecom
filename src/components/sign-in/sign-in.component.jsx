@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './sign-in.styles.scss';
 import FormInput from '../form-input/form-input.component';
@@ -19,8 +19,8 @@ const SignIn = () => {
             await auth.signInWithEmailAndPassword(email, password)
         } catch (error) {
             console.log(error)
+            alert("Wrong credentials");
         }
-
         setCreds({
             email: '',
             password: ''
@@ -29,8 +29,10 @@ const SignIn = () => {
 
     const handleChange = event => {
         const { value, name } = event.target;
+
         setCreds((_creds) => {
-            return { ..._creds, [name]: value }
+            _creds[name] = value
+            return { ..._creds }
         })
     }
 
@@ -49,7 +51,6 @@ const SignIn = () => {
                     label="Email"
                     required
                 />
-
                 <FormInput
                     name="password"
                     type="password"
